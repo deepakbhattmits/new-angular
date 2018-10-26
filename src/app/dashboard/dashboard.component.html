@@ -1,0 +1,56 @@
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+   <mat-select placeholder="Select">
+     <mat-option value="option">Option</mat-option>
+   </mat-select>
+ </mat-form-field>
+
+ <mat-radio-group>
+  <mat-radio-button value="M">Male </mat-radio-button>
+  <mat-radio-button value="F">Female</mat-radio-button>
+</mat-radio-group>
+<mat-radio-group>
+  <mat-checkbox>Cricket</mat-checkbox>
+  <mat-checkbox>Hockey</mat-checkbox>
+</mat-radio-group>
+</div>
+
+  <input class="form-control" name="search" [(ngModel)]="searchText" placeholder="search text goes here">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>{{ uname | uppercase }}</th>
+        <th>{{ fname | uppercase }}</th>
+        <th>{{ lname | uppercase }}</th>
+        <th>{{ action | uppercase }}</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users | filterData: searchText">
+      <tr>
+        <td>{{ user.username | uppercase }}</td>
+        <td>{{ user.FirstName | uppercase }}</td>
+        <td>{{ user.LastName | uppercase }}</td>
+        <td>
+            <a class="btn btn-warning" routerLink="/edit/{{user.id}}">{{ edit | uppercase }}</a>
+            <a class="btn btn-danger" (click)="deleteUser(user.id)">{{ delete | uppercase }}</a>
+        </td>
+      </tr>
+      <tr>
+        <!-- in case you want to show empty message -->
+        <td colspan="4" *ngIf="(users | filterData: stringFilter).length === 0">No matching elements</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="text-center text-uppercase" colspan="5">all right reseved</td>
+      </tr>
+    </tfoot>
+  </table>

@@ -1,0 +1,41 @@
+<mat-form-field>
+ <mat-select placeholder="Select"  #clientValue (change)="changeClient($event)">
+   <mat-option *ngFor="let user of users let i = index" data-index="i" [value]="user.id">{{user.username}}</mat-option>
+ </mat-select>
+</mat-form-field>
+
+<button mat-button (click)="addUser()">Add User</button>
+
+<!-- <p>{{ selectedUser | uppercase }}</p> -->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>{{ uid | uppercase }}</th>
+      <th>{{ uname | uppercase }}</th>
+      <th>{{ fname | uppercase }}</th>
+      <th>{{ lname | uppercase }}</th>
+      <th>{{ action | uppercase }}</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of selectedUserArr | filterData: searchText">
+    <tr>
+      <td>{{ user.id | uppercase }}</td>
+      <td>{{ user.username | uppercase }}</td>
+      <td>{{ user.FirstName | uppercase }}</td>
+      <td>{{ user.LastName | uppercase }}</td>
+      <td>
+          <a class="btn btn-warning" routerLink="/edit/{{user.id}}">{{ edit | uppercase }}</a>
+          <a class="btn btn-danger" (click)="deleteUser(user.id)">{{ delete | uppercase }}</a>
+      </td>
+    </tr>
+    <tr>
+      <!-- in case you want to show empty message -->
+      <td colspan="4" *ngIf="(users | filterData: stringFilter).length === 0">No matching elements</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="text-center text-uppercase" colspan="5">all right reseved</td>
+    </tr>
+  </tfoot>
+</table>

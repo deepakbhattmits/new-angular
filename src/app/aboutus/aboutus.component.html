@@ -1,0 +1,38 @@
+
+<mat-form-field>
+  <p>Select Country</p>
+ <mat-select placeholder="Select"  #clientValue0 (change)="changeCountry($event)" [(ngModel)]="selectedValue">
+   <mat-option *ngFor="let country of countries let i = index" data-index="i" [value]="country.id">{{ country.name | uppercase }}</mat-option>
+ </mat-select>
+</mat-form-field>
+ <mat-form-field *ngIf="selectedValue">
+   <p>Select State</p>
+   <mat-select placeholder="Select"  #clientValue1 (change)="changeState($event)" [(ngModel)]="selectedValue1">
+   <mat-option *ngFor="let state of states let i = index" data-index="i" [value]="state.id">{{ state.name | uppercase }}</mat-option>
+ </mat-select>
+</mat-form-field>
+<mat-form-field *ngIf="selectedValue1">
+   <p>Select City</p>
+  <mat-select placeholder="Select"  #clientValue2 (change)="changeCity($event)" [(ngModel)]="selectedValue2">
+  <mat-option *ngFor="let city of cities let i = index" data-index="i" [value]="city.name">{{ city.name | uppercase }}</mat-option>
+</mat-select>
+</mat-form-field>
+
+<mat-chip-list *ngIf="selectedValue2">
+  <mat-chip color="accent" selected> Pincode is : {{ pincode }}</mat-chip>
+</mat-chip-list>
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Enter fruits name..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)" />
+  </mat-chip-list>
+</mat-form-field>
+<button mat-raised-button (click)='submitdata()'>Click me!</button>

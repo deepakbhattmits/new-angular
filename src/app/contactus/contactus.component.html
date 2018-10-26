@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+  <h3>Address Form</h3>
+  <form name="form" class="formwidth" (ngSubmit)="myForm.form.valid && onSubmit()" #myForm="ngForm" novalidate>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput placeholder="First Name" id="firstname" [(ngModel)]="address.firstname" name="firstname" required />
+      <!-- <div *ngIf="myForm.submitted && !firstname.valid" class="help-block">First Name is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput placeholder="Last Name" id="lastname" [(ngModel)]="address.lastname"  name="lastname" required />
+      <!-- <div *ngIf="myForm.submitted && !lastname.valid" class="help-block">Last Name is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput placeholder="Enter Email" id="email" [(ngModel)]="address.email"  name="email" required />
+      <!-- <div *ngIf="myForm.submitted && !email.valid" class="help-block">email is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <textarea matInput placeholder="Address" id="address" [(ngModel)]="address.address"  name="address" required ></textarea>
+      <!-- <div *ngIf="myForm.submitted && !address.valid" class="help-block">Address is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput placeholder="City" id="city" [(ngModel)]="address.city" name="city"  required />
+      <!-- <div *ngIf="myForm.submitted && !city.valid" class="help-block">City is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput placeholder="State" id="state" [(ngModel)]="address.state" name="state"   required />
+      <!-- <div *ngIf="myForm.submitted && !state.valid" class="help-block">State is required</div> -->
+      </mat-input-container>
+      </div>
+      <div  class="col-lg-12 col-sm-12">
+      <mat-input-container class="col-ls-12 col-sm-12">
+      <input matInput #postalcode maxlength="5" placeholder="Postal Code" id="postalcode" [(ngModel)]="address.postalcode"  name="postalcode" (keypress)="numberOnly($event)" value="0" required />
+      <mat-hint align="end">
+      {{ postalcode.value.length }} / 5
+      </mat-hint>
+      </mat-input-container>
+      </div>
+      <div class="col-ls-12 col-sm-12">
+      <mat-chip color="accent" selected>{{ msg | uppercase }}</mat-chip>
+      <mat-chip color="primary" selected>{{ msgblank | uppercase }}</mat-chip>
+      </div>
+      <div class="col-lg-12 col-sm-12">
+      <button type="submit" mat-raised-button>Submit</button>
+      </div>
+  </form>
+</div>
+<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+  <mat-selection-list #dat>
+  <mat-list-option *ngFor="let dat of array let i = index">
+    {{dat}}
+  </mat-list-option>
+</mat-selection-list>
+
+<p>
+  Options selected: {{dat.selectedOptions.selected.length}}
+</p>
+</div>
+</div>
