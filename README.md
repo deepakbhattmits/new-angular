@@ -1,4 +1,4 @@
-# angular2-registration-login-example-cli
+# a2rewlgn
 
 Angular 2/5 User Registration and Login Example with Angular CLI
 
